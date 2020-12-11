@@ -2,20 +2,20 @@
 for(var i=0; i<document.getElementsByClassName("drum").length; i++)
 {
   document.getElementsByClassName("drum")[i].addEventListener("click", handleClick);
-
 }
 function handleClick()
 {
   this.style.color="white";
   var buttonInnerHTML=this.innerHTML;
   makeSound(buttonInnerHTML);
-
+  buttonAnimation(buttonInnerHTML);
 }
 
 // Detecting keyboard button press
 document.addEventListener("keypress", function(event){
   console.log(event);
   makeSound(event.key);
+  buttonAnimation(event.key);
 })
 
 
@@ -60,6 +60,12 @@ function makeSound(key){
     default:
     console.log(innerHTML);
     console.log(event.key);
-
   }
+}
+
+// Button animation
+function buttonAnimation(currentKey){
+  var activeButton = document.querySelector("."+currentKey);
+  activeButton.classList.add("pressed");
+  setTimeout(function(){ activeButton.classList.remove("pressed") }, 300);
 }
