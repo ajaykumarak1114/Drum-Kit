@@ -1,3 +1,4 @@
+// Detecting button press
 for(var i=0; i<document.getElementsByClassName("drum").length; i++)
 {
   document.getElementsByClassName("drum")[i].addEventListener("click", handleClick);
@@ -6,7 +7,21 @@ for(var i=0; i<document.getElementsByClassName("drum").length; i++)
 function handleClick()
 {
   this.style.color="white";
-  switch (this.innerHTML) {
+  var buttonInnerHTML=this.innerHTML;
+  makeSound(buttonInnerHTML);
+
+}
+
+// Detecting keyboard button press
+document.addEventListener("keypress", function(event){
+  console.log(event);
+  makeSound(event.key);
+})
+
+
+// make sound on button and keyboard press
+function makeSound(key){
+  switch (key) {
     case "w" :
         var tom1 = new Audio("sounds/tom-1.mp3");
         tom1.play();
@@ -43,7 +58,8 @@ function handleClick()
         break;
 
     default:
+    console.log(innerHTML);
+    console.log(event.key);
 
   }
-
 }
